@@ -1,37 +1,6 @@
 class UsersController < ApplicationController
+  include Swagger::UsersApi
   before_action :set_user, only: [:show, :update, :destroy]
-  include Swagger::Blocks
-
-  swagger_path '/users/{id}' do
-
-    # GET /users/:id
-    operation :get do
-      key :description, 'Find a user by ID'
-      key :operationId, :find_user_by_id
-
-      parameter name: :id do
-        key :in, :path
-        key :description, 'User ID'
-        key :required, true
-        key :type, :integer
-        key :format, :int64
-      end
-
-      response 200 do
-        key :description, 'User'
-        schema do
-          key :required, [:id, :name]
-          property :id do
-            key :type, :integer
-            key :format, :int64
-          end
-          property :name do
-            key :type, :string
-          end
-        end
-      end
-    end
-  end
 
   # GET /users
   def index

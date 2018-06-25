@@ -14,10 +14,14 @@ class ApidocsController < ApplicationController
     key :basePath, '/'
     key :consumes, ['application/json']
     key :produces, ['application/json']
+    tag name: 'User' do
+      key :description, 'Users'
+    end
   end
 
   # A list of all classes that have swagger_* declarations.
   SWAGGERED_CLASSES = [
+      User,
       UsersController,
       self,
   ].freeze
